@@ -1,4 +1,4 @@
-# Inferencia de Prioridades de Política para Lima, Perú
+# <p align="center">Inferencia de Prioridades de Política para Lima, Perú</p>
 
 #### Repositorio con datos y código creados para el proyecto: *Las Prioridades de Política en el Contexto de los Objetivos de Desarrollo Sostenible. Un Análisis de la  Municipalidad Metropolitana de Lima.*
 
