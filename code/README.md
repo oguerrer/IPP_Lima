@@ -4,7 +4,7 @@ Carpeta con el código desarrollado para producir el reporte (simulaciones, figu
 
 Los archivos han sido enumerados para una fácil reproducción de los resultados presentados en el reporte. Se recomienda clonar el repositorio completo y correr cada script de manera secuencia para reproducir cada resultado. Las figuras y cuadros generados se guardarán automáticamente en las carpetas correspondientes del repositorio.
 
-El archivo `ppi.py` contiene el código del model de *Inferencia de Prioridades de Política*, el cual es importado en cada uno de los scripts enumerados. Para una introducción más al uso de estos scripts, favor de ver los cuadernos de Jupiter en la carpeta de *tutoriales*.
+El archivo `ppi.py` contiene el código del model de *Inferencia de Prioridades de Política*, el cual es importado en cada uno de los scripts enumerados. Para una introducción más al uso de estos scripts, favor de ver los cuadernos de Jupiter en la carpeta de `tutoriales`.
 
 <br/>
 
