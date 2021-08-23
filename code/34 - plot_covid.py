@@ -1,3 +1,8 @@
+'''
+Este script genera la figura 12.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy, re, csv
@@ -6,7 +11,6 @@ import pandas as pd
 
 home =  os.getcwd()[:-4]
 
-path = '/Users/tequilamambo/Dropbox/Apps/ShareLaTeX/ppi_lima/figs/'
 
 
 df = pd.read_csv(home+"data/base_final.csv")
@@ -134,7 +138,7 @@ plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.xlabel('ODS', fontsize=14)
 plt.tight_layout()
-plt.savefig(path+'flechas_covid2.pdf')
+plt.savefig(home+'/figuras/flechas_covid2.pdf')
 plt.show()
 
 
@@ -180,45 +184,11 @@ D5 = D5[:]
 
 
 
-# indis_base = dfi.values[:,0:60].mean(axis=0)
-# indis_optmuni = dfo.values[:,0:60].mean(axis=0)
-# indis_opt50 = df5.values.mean(axis=0)
-
-
-# plt.figure(figsize=(6,4))
-# plt.plot( 100*(indis_optmuni-indis_base)/indis_base, '-k', linewidth=2 )
-# plt.plot( range(0, 60, 6), 100*(indis_optmuni[0::6]-indis_base[0::6])/indis_base[0::6], '.k', label='escenario pandemia', markersize=15 )
-# plt.plot( 100*(indis_opt50-indis_base)/indis_base, '-k', linewidth=2 )
-# plt.plot( range(0, 60, 6), 100*(indis_opt50[0::6]-indis_base[0::6])/indis_base[0::6], 'o', label='optimización bajo pandemia',
-#           markersize=10, mfc='w', mec='k' )
-
-# plt.xlim(-1, Di.shape[1])
-# plt.gca().set_xticks(range(0, Di.shape[1]+1, 6))
-# plt.gca().set_xticklabels(range(2020, 2031))
-# plt.gca().spines['top'].set_visible(False)
-# plt.gca().spines['right'].set_visible(False)
-# plt.xlabel('año', fontsize=14)
-# plt.ylabel('mejora del indicador promedio', fontsize=14)
-# plt.legend(fontsize=12)
-# plt.tight_layout()
-# plt.savefig(path+'impacto_covid2.pdf')
-# plt.show()
-
-
-
-
-
-
-
 
 
 plt.figure(figsize=(6,4))
-# plt.plot( Di.mean(axis=0), '-k', linewidth=2 )
-# plt.plot( range(0, 60, 6), Di.mean(axis=0)[0::6], 'vk', label='escenario base' )
 plt.plot( np.mean(Do*np.tile(weights, (Do.shape[1],1)).T, axis=0), '-k', linewidth=2, label='escenario pandemia' )
-# plt.plot( range(0, 60, 6), np.mean(Do*np.tile(weights, (Do.shape[1],1)).T, axis=0)[0::6], '-k', label='escenario pandemia', markersize=15 )
 plt.plot( np.mean(D5*np.tile(weights, (D5.shape[1],1)).T, axis=0), '--k', linewidth=2, label='optimización bajo pandemia' )
-# plt.plot( range(0, 60, 6), np.mean(D5*np.tile(weights, (D5.shape[1],1)).T, axis=0)[0::6], '--k', label='optimización bajo pandemia', markersize=10, mfc='w', mec='k' )
 
 plt.xlim(-1, Di.shape[1])
 plt.gca().set_xticks(range(0, Di.shape[1]+1, 6))
@@ -229,86 +199,8 @@ plt.xlabel('año', fontsize=14)
 plt.ylabel('brecha ponderada promedio', fontsize=14)
 plt.legend(fontsize=12)
 plt.tight_layout()
-plt.savefig(path+'covid_efecto2.pdf')
+plt.savefig(home+'/figuras/covid_efecto2.pdf')
 plt.show()
-
-
-
-
-
-
-
-
-
-
-dfp = pd.read_csv(home+"data/sims/prospective.csv")
-finals_pro = dfp.values[:,60]
-dfc = pd.read_csv(home+"data/sims/optimal_covid2.csv")
-finals_opt = dfc.values[:,-1]
-plt.figure(figsize=(12,4))
-i=0
-sdgs = df.ODS1.values
-all_changes = 100*(finals_opt-finals_pro)/finals_pro
-for i in range(len(finals_pro)):
-    sdg = sdgs[i]
-    changeB = all_changes[i]
-    plt.bar(i, changeB, color=colors_sdg[sdg], log=False)
-plt.xlim(-1, len(df))
-# plt.ylim(0, 1)
-plt.gca().spines['top'].set_visible(False)
-plt.gca().spines['right'].set_visible(False)
-plt.gca().set_xticks(range(len(df)))
-plt.gca().set_xticklabels(df.Abreviatura, rotation=90, fontsize=8)
-# plt.legend(fontsize=12)
-# plt.xlabel('nivel promedio del indicador (más=mejor)', fontsize=14)
-plt.ylabel('mejora en el indicador (%)', fontsize=14)
-plt.tight_layout()
-plt.savefig(path+'optimal_bars.pdf')
-plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-dfPp = pd.read_csv(home+"data/sims/prospective_Ps.csv")
-dfPo = pd.read_csv(home+"data/sims/optimal_Ps_covid2.csv")
-
-ps_pro = dfPp.values[:,0:60].sum(axis=1)
-ps_opt = dfPo.values.sum(axis=1)
-
-all_sdgs = df.ODS1.values[df.Instrumental==1]
-names = df.Abreviatura.values[df.Instrumental==1]
-
-R = df.Instrumental==1
-
-### TABLA INDICADORES
-ch_I_opt = 100*(dfc.values[R][:,59]-dfc.values[R][:,0])/dfc.values[R][:,0]
-changes = 100*(ps_opt-ps_pro)/ps_pro
-args = np.argsort(changes)[::-1]
-for arg in args:
-    
-    ods = all_sdgs[arg]
-    nombre = names[arg]
-    changeB = np.round(changes[arg], 3)
-    changeI = np.round(ch_I_opt[arg], 3)
-    
-    print(nombre.replace('_', '\\_'), '&', ods, '&', changeB, '&', changeI, '\\\\')
-
-np.corrcoef(changes, ch_I_opt)
-
-
-
-
-
-
 
 
 

@@ -1,3 +1,11 @@
+'''
+Este script corre el modelo para el periodo prospectivo (2020-2040) bajo
+el presupuesto optimizado para el escenario fiscal flexible. Se guardan
+la dinámica promedio de los indicadores y las asignaciones presupuestales
+inferidas para cada indicador.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os

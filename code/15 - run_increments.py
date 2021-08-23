@@ -1,3 +1,13 @@
+'''
+Este script corre simulaciones para el periodo prospectivo (2020-2040), 
+pero suponiendo que el presupuesto total crece a tasas más elevadas que la
+reflejada en los datos históricos (9.5%).
+
+Se simula con tasas de crecimiento del 10, 11, ..., 20% anual y se la dinámica
+promedio de cada indicador bajo cada tasa de crecimiento.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os

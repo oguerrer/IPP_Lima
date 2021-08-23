@@ -1,3 +1,10 @@
+'''
+Este script corre las simulaciones sobre la frontera presupuestaria para
+el periodo prospectivo (2020-2040) y guarda la dinámica promedio de los 
+indicadores.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os

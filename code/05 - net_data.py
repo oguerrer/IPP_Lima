@@ -1,3 +1,10 @@
+'''
+Este script obtiene las primeras diferencias intertemporales de los indicadores.
+Los datos resultantes son utilizados para estimar la red de interdependencias
+entre indicadores que será uno de los insumos de IPP.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os

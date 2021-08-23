@@ -1,3 +1,9 @@
+'''
+Este script genera la base de datos presupuestal que usa IPP, así como
+los paneles de la figura 2.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy, re, csv
@@ -6,7 +12,6 @@ import pandas as pd
 
 home =  os.getcwd()[:-4]
 
-path = '/Users/tequilamambo/Dropbox/Apps/ShareLaTeX/ppi_lima/figs/'
 
 
 df = pd.read_csv(home+"data/base_final.csv")
@@ -64,6 +69,16 @@ plt.show()
 dff.to_csv(home+'data/base_presupuesto.csv', index=False)
 
 
+
+
+
+
+
+
+
+
+
+
 dfi = dff.groupby('ODS').sum()
 
 
@@ -78,7 +93,7 @@ plt.xlabel('año', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'presupuesto_evol.pdf')
+plt.savefig(home+'/figuras/presupuesto_evol.pdf')
 plt.show()
 
 
@@ -96,7 +111,7 @@ plt.xlabel('año', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'presupuesto_evol_lima.pdf')
+plt.savefig(home+'/figuras/presupuesto_evol_lima.pdf')
 plt.show()
 
 
@@ -122,7 +137,7 @@ plt.xlabel('cambio promedio presupuestal del ODS', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'presupuesto_indis.pdf')
+plt.savefig(home+'/figuras/presupuesto_indis.pdf')
 plt.show()
 
 
@@ -149,7 +164,7 @@ plt.xlabel('nivel anual promedio', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'indis_desempenio.pdf')
+plt.savefig(home+'/figuras/indis_desempenio.pdf')
 plt.show()
 
 

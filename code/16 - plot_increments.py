@@ -1,3 +1,8 @@
+'''
+Este script genera las figuras 5, 6, 7, y el panel b de la figura 8.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy, re, csv
@@ -7,7 +12,6 @@ from scipy.optimize import curve_fit
 
 home =  os.getcwd()[:-4]
 
-path = '/Users/tequilamambo/Dropbox/Apps/ShareLaTeX/ppi_lima/figs/'
 
 
 df = pd.read_csv(home+"data/base_final.csv")
@@ -25,10 +29,6 @@ dfi = pd.read_csv(home+"data/sims/prospective.csv")
 all_vals = dfi.values
 
 
-
-
-# plt.rcParams['xtick.bottom'] = plt.rcParams['xtick.labelbottom'] = False
-# plt.rcParams['xtick.top'] = plt.rcParams['xtick.labeltop'] = True
 
 
 
@@ -68,7 +68,7 @@ plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.legend(fontsize=12, ncol=3)
 plt.tight_layout()
-plt.savefig(path+'brechas_reduc_2030.pdf')
+plt.savefig(home+'/figuras/brechas_reduc_2030.pdf')
 plt.show()
 
 
@@ -109,7 +109,7 @@ plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.legend(fontsize=12, ncol=3)
 plt.tight_layout()
-plt.savefig(path+'brechas_reduc_2040.pdf')
+plt.savefig(home+'/figuras/brechas_reduc_2040.pdf')
 plt.show()
 
 
@@ -143,13 +143,6 @@ def func(x, a):
     
 
 
-# for index, serie in enumerate(M):
-#     row = df.loc[index]
-#     x = aumentos
-#     y = serie
-#     plt.plot(x, serie, color=colors_sdg[row.ODS1])
-# # plt.ylim(0,100)
-# plt.show()
 
 
 
@@ -172,7 +165,7 @@ plt.ylabel('brecha de 2030 reducida (%)', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'aumento_curves.pdf')
+plt.savefig(home+'/figuras/aumento_curves.pdf')
 plt.show()
 
 
@@ -202,7 +195,7 @@ plt.ylabel('parámetro de sensibilidad', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'aumento_params.pdf')
+plt.savefig(home+'/figuras/aumento_params.pdf')
 plt.show()
 
 
@@ -242,7 +235,7 @@ plt.ylabel('parámetro de sensibilidad', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'aumento_indis.pdf')
+plt.savefig(home+'/figuras/aumento_indis.pdf')
 plt.show()
 
 
@@ -269,11 +262,6 @@ plt.show()
 
 
 
-
-
-
-# plt.rcParams['xtick.bottom'] = plt.rcParams['xtick.labelbottom'] = True
-# plt.rcParams['xtick.top'] = plt.rcParams['xtick.labeltop'] = False
 
 
 dft = pd.read_csv(home+"data/sims/increment_20.csv")
@@ -324,7 +312,7 @@ pie2, _ = ax.pie(np.ones(len(df)), radius=1, colors=cin, labels=labels, rotatela
                  labeldistance=1.17)
 plt.setp( pie2, width=width, edgecolor='none')
 plt.tight_layout()
-plt.savefig(path+'dona_convergencia_doble.pdf')
+plt.savefig(home+'/figuras/dona_convergencia_doble.pdf')
 plt.show()
 
 

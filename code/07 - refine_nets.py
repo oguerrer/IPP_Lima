@@ -1,3 +1,9 @@
+'''
+Este script toma la red estimada y corrige los pesos en caso de haber valores
+aberrantes o falsos positivos (enlaces negativos al interior de un mismo ODS).
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy

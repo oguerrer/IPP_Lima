@@ -1,3 +1,11 @@
+'''
+Este script corre el modelo calibrado para el periodo prospectivo (2020-2040) 
+y guarda las asignaciones presupuestales inferidas para cada indicador 
+instrumental así como los niveles de cada indicador con periodicidad bimestral.
+
+'''
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os

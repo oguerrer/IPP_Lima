@@ -1,3 +1,15 @@
+'''
+Este script corre el algoritmo de evolucion diferenciada para encontrar una
+redistribucion presupuestal optima bajo el escenario fiscal conservador y con
+una tasa de crecimiento a anual del presupuesto de 20%. 
+
+El algoritmo corre iterativamente de forma perpetua y guarda la distribucion 
+optima en cada iteracion. Se recomienda detener el algoritmo despues de 200 
+iteraciones pues es poco probable encontrar mejores soluciones despues de este umbral.
+
+'''
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -129,13 +141,6 @@ for i in range(B_sequence_ref.shape[1]):
     if i%int(max_steps/num_years)==0:
         bench *= (1+interest)
 
-
-# fin_indis = Parallel(n_jobs=parallel_processes, verbose=0)(delayed(run_ppi_parallel2)(I0, A, R, alphas, cc, rl, betas, scalar, B_sequence, budget_hash, max_theo) for itera in range(1000))
-# series = np.mean(fin_indis, axis=0)
-# M = np.tile(df.Meta.values*100, (series.shape[1],1)).T - series
-# M[M<0] = 0
-# plt.plot(M.mean(axis=0))
-# plt.show()
 
 
 

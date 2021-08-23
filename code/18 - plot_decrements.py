@@ -1,3 +1,8 @@
+'''
+Este script genera las figuras B.1, B.2 y el panel a de la figura 8.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy, re, csv
@@ -6,7 +11,7 @@ from scipy.optimize import curve_fit
 
 home =  os.getcwd()[:-4]
 
-path = '/Users/tequilamambo/Dropbox/Apps/ShareLaTeX/ppi_lima/figs/'
+
 
 
 df = pd.read_csv(home+"data/base_final.csv")
@@ -52,14 +57,6 @@ def func(x, a):
     
 
 
-for index, serie in enumerate(M):
-    row = df.loc[index]
-    x = reductions
-    y = serie
-    plt.plot(x, serie, color=colors_sdg[row.ODS1])
-plt.show()
-
-
 
 plt.figure(figsize=(6,4))
 params = []
@@ -81,7 +78,7 @@ plt.ylabel('brecha de 2030 ampliada (%)', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'retraso_curves.pdf')
+plt.savefig(home+'/figuras/retraso_curves.pdf')
 plt.show()
 
 
@@ -114,7 +111,7 @@ plt.ylabel('parámetro de sensibilidad', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'retraso_params.pdf')
+plt.savefig(home+'/figuras/retraso_params.pdf')
 plt.show()
 
 
@@ -156,7 +153,7 @@ plt.ylabel('parámetro de sensibilidad', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'retraso_indis.pdf')
+plt.savefig(home+'/figuras/retraso_indis.pdf')
 plt.show()
 
 
@@ -216,7 +213,7 @@ pie2, _ = ax.pie(np.ones(len(df)), radius=1, colors=cin, labels=labels, rotatela
                  labeldistance=1.17)
 plt.setp( pie2, width=width, edgecolor='none')
 plt.tight_layout()
-plt.savefig(path+'dona_convergencia_mitad.pdf')
+plt.savefig(home+'/figuras/dona_convergencia_mitad.pdf')
 plt.show()
 
 

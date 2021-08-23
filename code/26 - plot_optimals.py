@@ -1,3 +1,9 @@
+'''
+Este script genera las figuras 10 y 11.
+
+'''
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy, re, csv
@@ -6,7 +12,6 @@ import pandas as pd
 
 home =  os.getcwd()[:-4]
 
-path = '/Users/tequilamambo/Dropbox/Apps/ShareLaTeX/ppi_lima/figs/'
 
 
 df = pd.read_csv(home+"data/base_final.csv")
@@ -133,7 +138,7 @@ plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.xlabel('ODS', fontsize=14)
 plt.tight_layout()
-plt.savefig(path+'flechas_0.pdf')
+plt.savefig(home+'/figuras/flechas_0.pdf')
 plt.show()
 
 
@@ -188,7 +193,7 @@ plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.xlabel('ODS', fontsize=14)
 plt.tight_layout()
-plt.savefig(path+'flechas_50.pdf')
+plt.savefig(home+'/figuras/flechas_50.pdf')
 plt.show()
 
 
@@ -230,41 +235,6 @@ Dt = Dt[:,0:60]
 
 
 
-indis_base = dfi.values[:,0:60].mean(axis=0)
-indis_optmuni = dfo.values.mean(axis=0)
-indis_opt50 = df5.values.mean(axis=0)
-indis_incr = dft.values[:,0:60].mean(axis=0)
-
-
-plt.figure(figsize=(6,4))
-plt.plot( 100*(indis_optmuni-indis_base)/indis_base, '-k', linewidth=2 )
-plt.plot( range(0, 60, 6), 100*(indis_optmuni[0::6]-indis_base[0::6])/indis_base[0::6], '^k', label='presupuesto creciendo al 20%' )
-plt.plot( 100*(indis_opt50-indis_base)/indis_base, '-k', linewidth=2 )
-plt.plot( range(0, 60, 6), 100*(indis_opt50[0::6]-indis_base[0::6])/indis_base[0::6], '.k', label='reasignación conservadora', markersize=15 )
-plt.plot( 100*(indis_incr-indis_base)/indis_base, '-k', linewidth=2 )
-plt.plot( range(0, 60, 6), 100*(indis_incr[0::6]-indis_base[0::6])/indis_base[0::6], 'o', label='reasignación flexible', markersize=10, mfc='w', mec='k' )
-
-plt.xlim(-1, Dt.shape[1])
-plt.gca().set_xticks(range(0, Dt.shape[1]+1, 6))
-plt.gca().set_xticklabels(range(2020, 2031))
-plt.gca().spines['top'].set_visible(False)
-plt.gca().spines['right'].set_visible(False)
-plt.xlabel('año', fontsize=14)
-plt.ylabel('mejora del indicador promedio', fontsize=14)
-plt.legend(fontsize=12)
-plt.tight_layout()
-plt.savefig(path+'impacto_optimo.pdf')
-plt.show()
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -287,7 +257,7 @@ plt.xlabel('año', fontsize=14)
 plt.ylabel('brecha promedio en 2030', fontsize=14)
 plt.legend(fontsize=12)
 plt.tight_layout()
-plt.savefig(path+'optimo_efecto.pdf')
+plt.savefig(home+'/figuras/optimo_efecto.pdf')
 plt.show()
 
 
@@ -334,7 +304,7 @@ plt.gca().set_xticks(range(i))
 plt.gca().set_xticklabels(labels, rotation=90, fontsize=7)
 plt.ylabel('cierre de brecha (%)', fontsize=14)
 plt.tight_layout()
-plt.savefig(path+'optimo_final.pdf')
+plt.savefig(home+'/figuras/optimo_final.pdf')
 plt.show()
 
 

@@ -1,3 +1,10 @@
+'''
+Este script toma los indicadores originales (en la carpeta "raw") y los 
+normaliza entre 0.1 y 0.9 utilizando sus mínimos y máximos teóricos.
+
+'''
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy

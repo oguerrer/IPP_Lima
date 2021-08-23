@@ -1,3 +1,9 @@
+'''
+Este script realiza la calibración del modelo y genera un archivo con los parámetros.
+
+'''
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -154,7 +160,7 @@ dfc = pd.DataFrame([[alphas_est[i], betas_final_est[i], max_steps, num_years, er
                     if i==0 else [alphas_est[i], betas_final_est[i], np.nan, np.nan, errors_alpha[i]/scalar, error_beta[i], np.nan, np.nan, GoF_alpha[i], GoF_beta[i]] \
                    for i in range(N)], 
                    columns=['alphas', 'beta', 'steps', 'years', 'error_alpha', 'error_beta', 'scalar', 'min_value', 'GoF_alpha', 'GoF_beta'])
-# dfc.to_csv(home+'data/parametros.csv', index=False)
+dfc.to_csv(home+'data/parametros.csv', index=False)
 
 
 

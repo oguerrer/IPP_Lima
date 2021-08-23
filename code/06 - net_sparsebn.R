@@ -1,3 +1,8 @@
+"
+Este script estima la red de interdependencias entre indicadores.
+"
+
+
 library("sparsebn")
 library("stringi")
 

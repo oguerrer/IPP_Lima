@@ -1,3 +1,9 @@
+'''
+Este script corre el modelo calibrado para el periodo histórico y guarda las 
+asignaciones presupuestales inferidas para cada indicador instrumental.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -99,8 +105,6 @@ for tsI, tsP in fin_vals:
             output_data_P.append([i] + tsP[R_idx2new[i]].tolist())
 
 
-dfi = pd.DataFrame(output_data_indi, columns=['indicador']+list(range(len(serie))))
-dfi.groupby('indicador').mean().to_csv(home+"data/sims/retrospective.csv", index=False)
 
 dfp = pd.DataFrame(output_data_P, columns=['indicador']+list(range(len(serie))))
 dfp.groupby('indicador').mean().to_csv(home+"data/sims/retrospective_Ps.csv", index=False)

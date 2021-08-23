@@ -1,3 +1,10 @@
+'''
+Este script genera  el panel c de la figura 8, y la figura 9.
+También se genera el cuadro D.4.
+
+'''
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy, re, csv
@@ -6,7 +13,6 @@ import pandas as pd
 
 home =  os.getcwd()[:-4]
 
-path = '/Users/tequilamambo/Dropbox/Apps/ShareLaTeX/ppi_lima/figs/'
 
 
 df = pd.read_csv(home+"data/base_final.csv")
@@ -70,7 +76,7 @@ pie2, _ = ax.pie(np.ones(len(df)), radius=1, colors=cin, labels=labels, rotatela
                  labeldistance=1.17)
 plt.setp( pie2, width=width, edgecolor='none')
 plt.tight_layout()
-plt.savefig(path+'dona_convergencia_frontera.pdf')
+plt.savefig(home+'/figuras/dona_convergencia_frontera.pdf')
 plt.show()
 
 
@@ -118,32 +124,12 @@ plt.gca().spines['right'].set_visible(False)
 plt.xlabel('nivel promedio del indicador (más=mejor)', fontsize=14)
 plt.ylabel('meses de ahorro', fontsize=14)
 plt.tight_layout()
-plt.savefig(path+'frontier_months_2030.pdf')
+plt.savefig(home+'/figuras/frontier_months_2030.pdf')
 plt.show()
 
 
 
 
-
-
-
-
-
-
-to_check = ['segur_socia', 'defi_calori', 'desn_croni', 'prev_anemi', 'mort_neon', 'VIH_total', 'acci_vial', 'segur_gasto', 'habit_medi', 'habit_enfer']
-dft = pd.read_csv(home+"data/sims/frontier.csv")
-all_vals_t = dft.values
-dfp = pd.read_csv(home+"data/sims/prospective.csv")
-all_vals_p = dfp.values
-
-
-for i, row in df.iterrows():
-    ods = row.ODS1
-    pos = np.where(all_vals_t[i] >= all_vals_p[i][59])[0][0]
-    savings = 12*(59-pos)/6
-    fin_val = row[colYears].values.mean()*100
-    if row.Abreviatura in to_check:
-        print(row.Abreviatura, savings, all_vals_p[i][0])
 
 
 
@@ -163,7 +149,7 @@ for i in range(len(dfpm)):
     all_meses.append(savings)
 
 args = np.argsort(all_meses)[::-1]
-
+tabla = []
 for arg in args:
     
     sdg = df.ODS1.values[arg]
@@ -174,10 +160,10 @@ for arg in args:
     if R[arg] == 0:
        instr = 'no' 
     
-    print(nombre.replace('_', '\_'), '&', sdg, '&', instr, '&', meses, '&', level, '\\\\')
+    tabla.append( [nombre, sdg, instr, meses, level] )
 
-
-
+dff = pd.DataFrame(tabla, columns=['abreviatura', 'ods', 'instrumental', 'meses_ahorro', 'nivel_2020'])
+dff.to_csv(home+'/cuadros/ahorros_bajo_fronteras.csv', index=False)
 
 
 

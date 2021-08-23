@@ -1,3 +1,9 @@
+'''
+Este script toma los indicadores imputados, y corrige las imputaciones en caso de que
+estas presenten valores inválidos o volatilidad mayor a la de los datos empíricos.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy

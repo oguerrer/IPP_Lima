@@ -1,3 +1,9 @@
+'''
+Este script toma los indicadores normalizados e imputa sus valores faltantes
+mediante un modelo estadístico conocido como proceso de Gauss.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy

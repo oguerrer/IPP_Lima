@@ -1,3 +1,10 @@
+'''
+Este script genera los paneles de las figuras 3 y 4, 
+así como los cuadros D.1 y D.2.
+
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy, re, csv
@@ -6,7 +13,7 @@ import pandas as pd
 
 home =  os.getcwd()[:-4]
 
-path = '/Users/tequilamambo/Dropbox/Apps/ShareLaTeX/ppi_lima/figs/'
+
 
 
 df = pd.read_csv(home+"data/base_final.csv")
@@ -63,7 +70,7 @@ plt.gca().set_yticklabels(list(range(0, 21, 5)) + ['>20'], rotation=0)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'convergencia.pdf')
+plt.savefig(home+'/figuras/convergencia.pdf')
 plt.show()
 
 
@@ -101,7 +108,7 @@ plt.xlabel('cambio porcentual en el gasto', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'convergencia_gasto.pdf')
+plt.savefig(home+'/figuras/convergencia_gasto.pdf')
 plt.show()
 
 
@@ -136,7 +143,7 @@ plt.ylabel('fecha de convergencia', fontsize=14)
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 plt.tight_layout()
-plt.savefig(path+'convergencia_curva.pdf')
+plt.savefig(home+'/figuras/convergencia_curva.pdf')
 plt.show()
 
 
@@ -177,7 +184,7 @@ pie2, _ = ax.pie(np.ones(len(df)), radius=1, colors=cin, labels=labels, rotatela
                  labeldistance=1.17)
 plt.setp( pie2, width=width, edgecolor='none')
 plt.tight_layout()
-plt.savefig(path+'dona_convergencia.pdf')
+plt.savefig(home+'/figuras/dona_convergencia.pdf')
 plt.show()
 
 
@@ -196,7 +203,7 @@ dfi = pd.read_csv(home+"data/sims/prospective.csv")
 df_table = pd.read_excel(home+"data/raw/Indicadores priorizados MML y de acuerdo a PDC.xlsx", sheet_name='list2')
 selected = df_table.seriesCode.values
 
-
+tabla = []
 for index, row in df.iterrows():
     if row.Abreviatura in selected:
         
@@ -207,7 +214,14 @@ for index, row in df.iterrows():
         change30 = '{:.3f}'.format(100*(val2030-val2020)/val2020)
         change35 = '{:.3f}'.format(100*(val2035-val2020)/val2020)
         
-        print(row.Abreviatura.replace('_', '\_'), '&', row.ODS1, '&', change30, '&', change35, '\\\\')
+        tabla.append( [row.Abreviatura, row.ODS1, change30, change35] )
+
+dff = pd.DataFrame(tabla, columns=['abreviatura', 'ods', 'mejora_en_2030', 'mejora_en_2035'])
+dff.to_csv(home+'/cuadros/proyecciones_estrategicos.csv', index=False)
+
+
+
+
 
 
 
@@ -218,6 +232,7 @@ df_table = pd.read_excel(home+"data/raw/Indicadores priorizados MML y de acuerdo
 selected = df_table.seriesCode.values
 
 
+tabla = []
 for index, row in df.iterrows():
     if row.Abreviatura in selected:
         
@@ -228,9 +243,10 @@ for index, row in df.iterrows():
         change30 = '{:.3f}'.format(100*(val2030-val2020)/val2020)
         change35 = '{:.3f}'.format(100*(val2035-val2020)/val2020)
         
-        print(row.Abreviatura.replace('_', '\_'), '&', row.ODS1, '&', change30, '&', change35, '\\\\')
+        tabla.append( [row.Abreviatura, row.ODS1, change30, change35] )
 
-
+dff = pd.DataFrame(tabla, columns=['abreviatura', 'ods', 'mejora_en_2030', 'mejora_en_2035'])
+dff.to_csv(home+'/cuadros/proyecciones_complementarios.csv', index=False)
 
 
 

@@ -1,3 +1,10 @@
+'''
+Este script hace el muestreo final de los indicadores y genera la base de datos
+que será usada con IPP.
+
+'''
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os, copy

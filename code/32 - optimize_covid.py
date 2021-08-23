@@ -1,3 +1,15 @@
+'''
+Este script corre el algoritmo de evolucion diferenciada para encontrar una
+redistribucion presupuestal optima bajo el escenario fiscal conservador y con
+una tasa de crecimiento a anual del presupuesto de 20% bajo el escenario Covid
+del reporte. 
+
+El algoritmo corre iterativamente de forma perpetua y guarda la distribucion 
+optima en cada iteracion. Se recomienda detener el algoritmo despues de 200 
+iteraciones pues es poco probable encontrar mejores soluciones despues de este umbral.
+
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import os
