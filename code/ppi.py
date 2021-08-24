@@ -43,8 +43,6 @@ def run_ppi(I0, A=None, R=None, alpha=.1, cc=1, rl=1, betas=None, get_gammas=Fal
     ----------
         I0: numpy array 
             Initial values of the development indicators.
-        G: numpy array 
-            Development goals.
         A:  2D numpy array
             The adjacency matrix of the spillover network of development 
             indicators. If not given, the model assumes a zero-matrix, so there 
