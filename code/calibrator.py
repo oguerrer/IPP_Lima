@@ -22,7 +22,7 @@ def run_ppi_parallel(I0, A, R, alpha, cc, rl, betas, scalar, B_sequence, budget_
 
 
 
-def fobj2(I0, A, R, alpha, cc, rl, betas, scalar, sample_size, G, success_emp, B_sequence, budget_hash, parallel_processes):
+def fobj2(I0, A, R, alpha, cc, rl, betas, scalar, sample_size, IF, success_emp, B_sequence, budget_hash, parallel_processes):
     sols = np.array(Parallel(n_jobs=parallel_processes, verbose=0)(delayed(run_ppi_parallel)\
             (I0, A, R, alpha, cc, rl, betas, scalar, B_sequence, budget_hash) for itera in range(sample_size)))
     FIs = []
@@ -33,7 +33,7 @@ def fobj2(I0, A, R, alpha, cc, rl, betas, scalar, sample_size, G, success_emp, B
             gammas.append( gamma )
 
     mean_indis = np.mean(FIs, axis=0)
-    error_alpha = G - mean_indis
+    error_alpha = IF - mean_indis
     mean_gamma = np.mean(gammas, axis=0)
     error_beta = success_emp - mean_gamma
 
@@ -45,7 +45,7 @@ def fobj2(I0, A, R, alpha, cc, rl, betas, scalar, sample_size, G, success_emp, B
 
 
 
-def calibrate(I0, A, R, cc, rl, scalar, G, success_emp, B_sequence, budget_hash, num_years, tolerance=.05, parallel_processes=2):
+def calibrate(I0, A, R, cc, rl, scalar, IF, success_emp, B_sequence, budget_hash, num_years, max_steps, min_value, tolerance=.05, parallel_processes=2):
 
     N = len(I0)
     params = np.ones(2*N)*.5
@@ -61,7 +61,7 @@ def calibrate(I0, A, R, cc, rl, scalar, G, success_emp, B_sequence, budget_hash,
         alphas_t = params[0:N]
         betas_t = params[N::]
         
-        errors = np.array(fobj2(I0, A, R, alphas_t, cc, rl, betas_t, scalar, sample_size, G, success_emp, B_sequence, budget_hash, parallel_processes))
+        errors = np.array(fobj2(I0, A, R, alphas_t, cc, rl, betas_t, scalar, sample_size, IF, success_emp, B_sequence, budget_hash, parallel_processes))
         normed_errors = errors/np.array((IF-I0).tolist() + success_emp.tolist())
         abs_errors = np.abs(errors)
         abs_normed_errrors = np.abs(normed_errors)
@@ -82,7 +82,7 @@ def calibrate(I0, A, R, cc, rl, scalar, G, success_emp, B_sequence, budget_hash,
     sample_size = 1000
     alphas_est = params[0:N]
     betas_est = params[N::]
-    errors_est = np.array(fobj2(I0, A, R, alphas_est, cc, rl, betas_est, scalar, sample_size, G, success_emp, B_sequence, budget_hash, parallel_processes))
+    errors_est = np.array(fobj2(I0, A, R, alphas_est, cc, rl, betas_est, scalar, sample_size, IF, success_emp, B_sequence, budget_hash, parallel_processes))
     errors_alpha = errors_est[0:N]
     error_beta = errors_est[N::]
     
@@ -97,4 +97,5 @@ def calibrate(I0, A, R, cc, rl, scalar, G, success_emp, B_sequence, budget_hash,
                         columns=['alphas', 'beta', 'steps', 'years', 'error_alpha', 'error_beta', 'scalar', 'min_value', 'GoF_alpha', 'GoF_beta'])
     return dfc
     
+
 
