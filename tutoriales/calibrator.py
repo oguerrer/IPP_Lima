@@ -1,13 +1,13 @@
-import matplotlib.pyplot as plt
 import numpy as np
-import os
 import pandas as pd
 from joblib import Parallel, delayed
 
 
-home =  os.getcwd()[:-4]
-
-os.chdir(home+'/code/')
+import requests
+url = 'https://raw.githubusercontent.com/oguerrer/IPP_Lima/main/code/ppi.py'
+r = requests.get(url)
+with open('ppi.py', 'w') as f:
+    f.write(r.text)
 import ppi
 
 

@@ -89,13 +89,14 @@ def calibrate(I0, A, R, cc, rl, scalar, IF, success_emp, B_sequence, budget_hash
     GoF_alpha = 1 - np.abs(errors_alpha)/(IF-I0)
     GoF_beta = 1 - np.abs(error_beta)/success_emp
     
-    betas_final_est = np.zeros(N)
-    betas_final_est = betas_est
-    dfc = pd.DataFrame([[alphas_est[i], betas_final_est[i], max_steps, num_years, errors_alpha[i]/scalar, error_beta[i], scalar, min_value, GoF_alpha[i], GoF_beta[i]] \
-                        if i==0 else [alphas_est[i], betas_final_est[i], np.nan, np.nan, errors_alpha[i]/scalar, error_beta[i], np.nan, np.nan, GoF_alpha[i], GoF_beta[i]] \
+    dfc = pd.DataFrame([[alphas_est[i], betas_est[i], max_steps, num_years, errors_alpha[i]/scalar, error_beta[i], scalar, min_value, GoF_alpha[i], GoF_beta[i]] \
+                        if i==0 else [alphas_est[i], betas_est[i], np.nan, np.nan, errors_alpha[i]/scalar, error_beta[i], np.nan, np.nan, GoF_alpha[i], GoF_beta[i]] \
                         for i in range(N)], 
                         columns=['alphas', 'beta', 'steps', 'years', 'error_alpha', 'error_beta', 'scalar', 'min_value', 'GoF_alpha', 'GoF_beta'])
     return dfc
     
+
+
+
 
 
