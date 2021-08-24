@@ -4,7 +4,7 @@ Este repositorio contiene los datos y código creados para el proyecto: *Las Pri
 
 <br/>
 
-Este proyecto ha sido auspiciado por el Programa de las Naciones Unidas para el Desarrollo (PNUD) de Perú. Para consultar el reporte asociado y resolver otras dudas, favor de contactar a ***.
+Este proyecto ha sido auspiciado por el Programa de las Naciones Unidas para el Desarrollo (PNUD) de Perú.
 
 <br/>
 
