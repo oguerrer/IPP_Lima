@@ -9,7 +9,7 @@ library("stringi")
 
 
 
-filep = "/Users/tequilamambo/Dropbox/Projects/ppi_lima/data/red/changes.csv"
+filep = "ruta_de_acceso/data/red/changes.csv"
 print(filep)
 S <- t(data.matrix(read.csv(filep, header=FALSE, sep = ",")))
 data <- sparsebnData(S, type = "continuous")
@@ -19,7 +19,7 @@ selected.lambda <- select.parameter(dags.estimate, data=data)
 dags.final.net <- dags.estimate[[selected.lambda]]
 dags.final.param <- dags.param[[selected.lambda]]
 adjMatrix <- dags.final.param$coefs
-write.table(as.matrix(adjMatrix), file="/Users/tequilamambo/Dropbox/Projects/ppi_lima/data/red/sparsebn.csv", row.names=FALSE, col.names=FALSE)
+write.table(as.matrix(adjMatrix), file="ruta_de_acceso/data/red/sparsebn.csv", row.names=FALSE, col.names=FALSE)
 
 
 
